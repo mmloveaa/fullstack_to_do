@@ -22,15 +22,16 @@ app.use(bodyParser.json());
 
 
 app.post('/todos', function (req, res, next) {
-	console.log("req.body: ", req)
+	// console.log("req.body: ", req)
 	fs.readFile(todosFilename, function (err, data) {
 		var toDoItem = JSON.parse(data);
 		toDoItem.push(req.body);
-		console.log('toDoItem: ', toDoItem)
+		// console.log('toDoItem: ', toDoItem)
 
 		fs.writeFile(todosFilename, JSON.stringify(toDoItem), function (err) {
-			console.log('done!');
+			// console.log('done!');
 			res.send(req.body);
+			console.log(req.body)
 
 		});
 	});
@@ -45,8 +46,8 @@ app.get('/todos', function (req, res) {
 
 // ':'' is defined url parameter
 app.delete('/todos/:index', function (req, res) {
-	console.log('req.params:', req.params);
-	cnsole.log(req.params.index)
+	// console.log('req.params:', req.params);
+	// cnsole.log(req.params.index)
 
 	res.send('DELETE to /todos/:index');
 });
@@ -64,7 +65,6 @@ app.get('/style.css', function (req, res, next) {
 app.get('/main.js', function (req, res, next) {
 	res.sendFile( path.join(__dirname, './main.js'));
 });
-
 
 
 

@@ -6,7 +6,6 @@ console.log('is this loading?');
 
 function init(){
 	event.preventDefault;
-	// var input = $('#input').val();
 	$('#addItems').on('click', addAllItems);
 	showAllItem();
 }
@@ -21,14 +20,14 @@ var toDoObj = {
 	toDo: $toDo
 };
 
-console.log(toDoObj)
+// console.log(toDoObj)
 
 	$.ajax({
 		url: 'http://localhost:8888/todos/',
         type: "POST",
         data: toDoObj,
         success: function(data){
-        	// console.log('before stringify: ', data)
+          // console.log('before stringify: ', data)
           // data = JSON.stringify(data);
           // console.log('todo data: ', data )
 
@@ -43,9 +42,9 @@ console.log(toDoObj)
 
           // console.log("dataToDo: ", data)
           $('#todoTable').append($toDoList);
-          console.log($toDoList)
+          // console.log($toDoList)
           $($toDoList).children('td').children('input').removeClass('hidden');
-
+          
           return $toDoList;
 
           // $('#square').removeClass("hidden");
@@ -85,9 +84,9 @@ function showAllItem(){
 
   		  // $('#todoTable').append(elements);
 
-          for ( var i=0; i< dataArray.length ; i++) {
+          for ( var i = 0; i < dataArray.length ; i++) {
             var $toDoList = $('#template').clone()
-          	console.log(dataArray[i].toDo)
+          	// console.log(dataArray[i].toDo)
 	          $toDoList.find('.oneItem').text(dataArray[i].toDo);
 	          $toDoList.find('.dateToDo').text(dataArray[i].date);
 
@@ -98,11 +97,6 @@ function showAllItem(){
           }
           return;
 
-          // $toDoList.removeAttr('id')
-          // console.log("toDoList: ", $toDoList)
-
-
-          // $('#square').removeClass("hidden");
         },
         error: function(err){
           console.error(err);
