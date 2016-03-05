@@ -2,13 +2,12 @@
 
 $(document).ready(init)
 
-console.log('is this loading?');
-
 function init(){
 	event.preventDefault;
 	$('#addItems').on('click', addAllItems);
 	showAllItem();
 }
+
 
 function addAllItems() {
 
@@ -44,10 +43,9 @@ var toDoObj = {
           $('#todoTable').append($toDoList);
           // console.log($toDoList)
           $($toDoList).children('td').children('input').removeClass('hidden');
-          
+
           return $toDoList;
 
-          // $('#square').removeClass("hidden");
         },
         error: function(err){
           console.error(err);
@@ -63,26 +61,12 @@ function showAllItem(){
         type: "GET",
         success: function(data){
         	console.log(data)
-        	// console.log('before stringify: ', data)
+          // console.log('before stringify: ', data)
           // data = JSON.stringify(data);
           // console.log('todo data: ', data )
           var dataArray = data;
 
 
-  		  // var elements;
-  		  // for ( var i=0; i< dataArray.length ; i++) {
-	  		 //  var $toDoList = $('#template').clone()
-	     //      // 	console.log(dataArray[i].toDo)
-	     //      $toDoList.find('.oneItem').text(dataArray[i].toDo);
-	     //      $toDoList.find('.dateToDo').text(dataArray[i].date);
-	     //      $($toDoList).children('td').children('input').removeClass('hidden');
-
-	     //      // console.log("dataToDo: ", data)
-  		  // 	  elements.append($toDoList);
-  		  // 	  console.log(elements)
-  		  // 	}
-
-  		  // $('#todoTable').append(elements);
 
           for ( var i = 0; i < dataArray.length ; i++) {
             var $toDoList = $('#template').clone()
@@ -104,3 +88,18 @@ function showAllItem(){
 	})
 
 }
+
+  		  // var elements;
+  		  // for ( var i=0; i< dataArray.length ; i++) {
+	  		 //  var $toDoList = $('#template').clone()
+	     //      // 	console.log(dataArray[i].toDo)
+	     //      $toDoList.find('.oneItem').text(dataArray[i].toDo);
+	     //      $toDoList.find('.dateToDo').text(dataArray[i].date);
+	     //      $($toDoList).children('td').children('input').removeClass('hidden');
+
+	     //      // console.log("dataToDo: ", data)
+  		  // 	  elements.append($toDoList);
+  		  // 	  console.log(elements)
+  		  // 	}
+
+  		  // $('#todoTable').append(elements);

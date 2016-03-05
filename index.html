@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Express!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Handlee' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="style.css">
 	<script src="https://code.jquery.com/jquery-2.2.1.js"></script>
@@ -13,14 +14,16 @@
 <center>
 <body>
 	<h1> Welcome to Mandy's To-Do List</h1>
+	<br>
 	<input type='date' name="" id="date">
 	<input type='text' id='toDo' placeholder='To-Do'>
 	<button id="addItems">Add To-Do Items</button>
-
+	<br>
+	<br>
 	<table>
 		<thread>
 			<br>
-			<tr>
+			<tr class="title">
 				<th>Description</th>
 				<th>Due Date</th>
 				<th>isComplete&nbsp;</th>
@@ -36,10 +39,14 @@
 				<td>
 				<input type="checkbox" class="hidden check">
 			    </td>
-			    <td></td>
+			    <td>
+			    <input type="checkbox" class="hidden check">	
+			    </td>
 			</tr>
 		</tbody>
 	</table>
 </body>
 </center>
 </html>
+
+<!-- <span class="glyphicon glyphicon-trash"></span> -->

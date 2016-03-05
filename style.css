@@ -3,6 +3,10 @@ body {
 	font-family: 'Handlee', cursive;
 }
 
+.title {
+	font-size: 22px;
+}
+
 .hidden {
 	display: none;
 }

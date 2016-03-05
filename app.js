@@ -31,7 +31,7 @@ app.post('/todos', function (req, res, next) {
 		fs.writeFile(todosFilename, JSON.stringify(toDoItem), function (err) {
 			// console.log('done!');
 			res.send(req.body);
-			console.log(req.body)
+			// console.log("req.body: ", req.body)
 
 		});
 	});
@@ -42,14 +42,6 @@ app.get('/todos', function (req, res) {
 		var todos = JSON.parse(data);
 		res.send(todos);
 	});
-});
-
-// ':'' is defined url parameter
-app.delete('/todos/:index', function (req, res) {
-	// console.log('req.params:', req.params);
-	// cnsole.log(req.params.index)
-
-	res.send('DELETE to /todos/:index');
 });
 
 
@@ -67,14 +59,19 @@ app.get('/main.js', function (req, res, next) {
 });
 
 
-
-
 app.get('/test' , function (req , res){
-	console.log('req.query:', req.query);
-	console.log('req.query.index:', req.query.index);
+	// console.log('req.query:', req.query);
+	// console.log('req.query.index:', req.query.index);
 	res.send('GET to /test \n');
 });
 
+// ':'' is defined url parameter
+app.delete('/todos/:index', function (req, res) {
+	// console.log('req.params:', req.params);
+	// cnsole.log(req.params.index)
+
+	res.send('DELETE to /todos/:index');
+});
 
 var server = http.createServer(app);
 
@@ -83,30 +80,30 @@ server.listen(PORT, function() {
 	console.log(`Server listening on port ${PORT}`);
 });
 
-// app.post('/task/add', function(req, res){
-//     fs.readFile('./tasks.json', function(err, data){
+// app.post('/todos/add', function(req, res){
+//     fs.readFile('./todos.json', function(err, data){
 //       if (err) return res.status(400).send(err);
 
 //       var taskList = JSON.parse(data)
 //       var newTask = req.body;
 //       taskList.push(newTask);
 
-//       fs.writeFile('./tasks.json', JSON.stringify(taskList), function(err){
+//       fs.writeFile('./todos.json', JSON.stringify(taskList), function(err){
 //         if (err) return res.status(400).send(err);
 //         res.send("task added\n");
 //       });
 //     });
 // });
 
-// app.post('/task/delete', function(req, res){
-//     fs.readFile('./tasks.json', function(err, data){
+// app.post('/todos/delete', function (req, res){
+//     fs.readFile('./todos.json', function(err, data){
 //       if (err) return res.status(400).send(err);
 
 //       var taskList = JSON.parse(data)
 //       var index = req.body.index;
 //       taskList.splice(index, 1);
 
-//       fs.writeFile('./tasks.json', JSON.stringify(taskList), function(err){
+//       fs.writeFile('./todos.json', JSON.stringify(taskList), function(err){
 //         if (err) throw err;
 //         res.send("task deleted\n");
 //       });
