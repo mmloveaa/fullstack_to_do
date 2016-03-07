@@ -44,3 +44,7 @@ tr {
 	height: 25px;
 	border-radius: 10%;
 }
+
+#template {
+	display:none;
+}

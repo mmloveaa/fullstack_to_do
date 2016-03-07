@@ -6,6 +6,7 @@ function init(){
 	event.preventDefault;
 	$('#addItems').on('click', addAllItems);
 	showAllItem();
+  $('table').on('click', ".deleteButton", removeToDo);
 }
 
 
@@ -30,7 +31,7 @@ var toDoObj = {
           // data = JSON.stringify(data);
           // console.log('todo data: ', data )
 
-          var $toDoList = $('#template').clone()
+          var $toDoList = $('#template').clone().removeAttr('id')
 
           // $toDoList.removeAttr('id')
           // console.log("toDoList: ", $toDoList)
@@ -69,7 +70,7 @@ function showAllItem(){
 
 
           for ( var i = 0; i < dataArray.length ; i++) {
-            var $toDoList = $('#template').clone()
+            var $toDoList = $('#template').clone().removeAttr('id')
           	// console.log(dataArray[i].toDo)
 	          $toDoList.find('.oneItem').text(dataArray[i].toDo);
 	          $toDoList.find('.dateToDo').text(dataArray[i].date);
@@ -87,6 +88,28 @@ function showAllItem(){
        }
 	})
 
+}
+
+
+function removeToDo(e){
+	e.stopPropagation();
+  console.log('this :', this)
+  var $this = $(this);
+	var indexO = $(this).parent().parent().index();
+
+
+  $.ajax({
+    url: 'http://localhost:8888/todos/' + indexO,
+        type: "DELETE",
+        
+        success: function(data){
+          // console.log(data)
+	         $this.parent().parent().remove();
+        },
+        error: function(err){
+          console.error("err: ", err);
+       }
+  });
 }
 
   		  // var elements;

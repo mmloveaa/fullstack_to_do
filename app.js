@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 
 app.post('/todos', function (req, res, next) {
-	// console.log("req.body: ", req)
+	console.log("req.body: ", req.body)
 	fs.readFile(todosFilename, function (err, data) {
 		var toDoItem = JSON.parse(data);
 		toDoItem.push(req.body);
@@ -66,12 +66,20 @@ app.get('/test' , function (req , res){
 });
 
 // ':'' is defined url parameter
-app.delete('/todos/:index', function (req, res) {
-	// console.log('req.params:', req.params);
-	// cnsole.log(req.params.index)
+// app.delete('/todos/:index', function (req, res) {
+// 	// console.log('req.params:', req.params);
+// 	// cnsole.log(req.params.index)
 
-	res.send('DELETE to /todos/:index');
-});
+// 	fs.readFile( todosFilename, function(err , data){
+// 		var todos = JSON.parse(data);
+// 		todos.splice(req.body.index , 1)
+// 	})
+
+// 	fs.writeFile( todosFilename, JSON.stringify(todos) , function (err){
+// 		console.log('delete successfully!!')
+// 	})
+// 	res.send('DELETE to /todos/:index');
+// });
 
 var server = http.createServer(app);
 
@@ -95,17 +103,18 @@ server.listen(PORT, function() {
 //     });
 // });
 
-// app.post('/todos/delete', function (req, res){
-//     fs.readFile('./todos.json', function(err, data){
-//       if (err) return res.status(400).send(err);
+app.delete('/todos/:index', function (req, res){
+    fs.readFile('./todos.json', function(err, data){
+      if (err) return res.status(400).send(err);
 
-//       var taskList = JSON.parse(data)
-//       var index = req.body.index;
-//       taskList.splice(index, 1);
-
-//       fs.writeFile('./todos.json', JSON.stringify(taskList), function(err){
-//         if (err) throw err;
-//         res.send("task deleted\n");
-//       });
-//     });
-// });
+      var taskList = JSON.parse(data)
+      // console.log('taskList: ', taskList);
+      var index = req.body.index;
+      taskList.splice(index, 1);
+			// console.log('taskList splice: ', taskList);
+      fs.writeFile('./todos.json', JSON.stringify(taskList), function(err){
+        if (err) throw err;
+        res.send("task deleted\n");
+      });
+    });
+});
